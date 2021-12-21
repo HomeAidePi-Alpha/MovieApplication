@@ -10,4 +10,9 @@ class SpringbootBackendApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void HelloWorld(){
+        ;
+    }
+
 }
