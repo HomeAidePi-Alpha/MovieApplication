@@ -5,14 +5,12 @@ pipeline {
         stage('Build') {
             steps {
                 git 'https://github.com/clh7090/MovieApplication.git'
-                sh './mvnw clean compile'
-                // bat '.\\mvnw clean compile'
+                sh './springboot-backend/mvnw/mvnw clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh './mvnw test'
-                // bat '.\\mvnw test'
+                sh './springboot-backend/mvnw test'
             }
 
             post {
