@@ -3,8 +3,6 @@ package com;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 @SpringBootTest
 class SpringbootBackendApplicationTests {
 
@@ -15,11 +13,6 @@ class SpringbootBackendApplicationTests {
     @Test
     void HelloWorld(){
         ;
-    }
-
-    @Test
-    void intentionalFailToTestGitHubActions(){
-        assertThat(5).isEqualTo(0);
     }
 
 }
