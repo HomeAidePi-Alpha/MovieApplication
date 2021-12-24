@@ -17,9 +17,6 @@ class SpringbootBackendApplicationTests {
         ;
     }
 
-    @Test
-    void intentionalFailToTestGitHubActions(){
-        assertThat(5).isEqualTo(0);
-    }
+
 
 }
