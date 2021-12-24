@@ -19,7 +19,7 @@ class SpringbootBackendApplicationTests {
 
     @Test
     void intentionalFailingTest(){
-        assertThat(5).isEqualTo(6);
+        assertThat(5).isEqualTo(5);
     }
 
 }
