@@ -13,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./springboot-backend
 
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +26,6 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: ./springboot-backend/mvnw clean install
+      run: mvn clean install
     - name: Test with Maven 
-      run: ./springboot-backend/mvnw clean test
+      run: mvn clean test
