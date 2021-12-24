@@ -12,14 +12,5 @@ class SpringbootBackendApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    void HelloWorld(){
-        ;
-    }
-
-    @Test
-    void intentionalFailingTest(){
-        assertThat(5).isEqualTo(5);
-    }
 
 }
