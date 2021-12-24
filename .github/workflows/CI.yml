@@ -23,6 +23,6 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install
+      run: ./springboot-backend/mvnw clean install
     - name: Test with Maven 
-      run: mvn clean test
+      run: ./springboot-backend/mvnw clean test
