@@ -4,13 +4,20 @@ import javax.persistence.*;
 
 import java.util.Date;
 
+/**
+ * @author Connor Hunter        connh321@gmail.com
+ * <p>
+ * A model for a user in the users table
+ */
 @Entity
 @Table(name = "users")
 public class UserModel {
 
+    //non-parameterized constructor
     public UserModel() {
     }
 
+    //parameterized constructor
     public UserModel(String username, String password, String email, Date creationDate, Date lastAccessDate) {
         this.username = username;
         this.password = password;
@@ -19,7 +26,7 @@ public class UserModel {
         this.lastAccessDate = lastAccessDate;
     }
 
-    @Id
+    @Id //pk
     @Column(name = "username")
     private String username;
 
@@ -29,13 +36,17 @@ public class UserModel {
     @Column(name = "email")
     private String email;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) //json format date
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) //json format date
     @Column(name = "last_access_date")
     private Date lastAccessDate;
+
+    ///
+    ///GETTERS AND SETTERS
+    ///
 
     public String getUsername() {
         return username;
