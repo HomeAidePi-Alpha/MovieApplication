@@ -1,6 +1,7 @@
 package com.Movie;
 
 
+import com.CastMember.CastMemberModel;
 import com.Director.DirectorModel;
 
 import javax.persistence.*;
@@ -37,6 +38,15 @@ public class MovieModel {
             inverseJoinColumns = {@JoinColumn(name = "did")}
     )
     private Set<DirectorModel> directorModels = new HashSet<>();
+
+    //N:M with CastMember
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "movie_cast_member",
+            joinColumns = {@JoinColumn(name = "mid")},
+            inverseJoinColumns = {@JoinColumn(name = "cmid")}
+    )
+    private Set<CastMemberModel> castMemberModels = new HashSet<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,5 +116,13 @@ public class MovieModel {
 
     public void setDirectorModels(Set<DirectorModel> directorModels) {
         this.directorModels = directorModels;
+    }
+
+    public Set<CastMemberModel> getCastMemberModels() {
+        return castMemberModels;
+    }
+
+    public void setCastMemberModels(Set<CastMemberModel> castMemberModels) {
+        this.castMemberModels = castMemberModels;
     }
 }
