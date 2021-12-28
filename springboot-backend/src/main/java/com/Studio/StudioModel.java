@@ -1,6 +1,10 @@
 package com.Studio;
 
+import com.Movie.MovieModel;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -19,6 +23,10 @@ public class StudioModel {
     public StudioModel(String name) {
         this.name = name;
     }
+
+    //N:M with Movie
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "studioModels")
+    private Set<MovieModel> movieModels = new HashSet<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,5 +54,13 @@ public class StudioModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<MovieModel> getMovieModels() {
+        return movieModels;
+    }
+
+    public void setMovieModels(Set<MovieModel> movieModels) {
+        this.movieModels = movieModels;
     }
 }
