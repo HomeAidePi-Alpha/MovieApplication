@@ -1,6 +1,10 @@
 package com.Director;
 
+import com.Movie.MovieModel;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -20,6 +24,10 @@ public class DirectorModel {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    //N:M with Movie
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "directorModels")
+    private Set<MovieModel> movieModels = new HashSet<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +66,13 @@ public class DirectorModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<MovieModel> getMovieModels() {
+        return movieModels;
+    }
+
+    public void setMovieModels(Set<MovieModel> movieModels) {
+        this.movieModels = movieModels;
     }
 }
