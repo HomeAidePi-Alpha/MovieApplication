@@ -1,5 +1,8 @@
 package com.User;
 
+import com.User.UserController;
+import com.User.UserModel;
+import com.User.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
