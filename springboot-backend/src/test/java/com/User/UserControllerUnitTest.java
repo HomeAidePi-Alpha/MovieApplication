@@ -15,7 +15,8 @@ import static org.mockito.Mockito.verify;
 /**
  * @author Connor Hunter        connh321@gmail.com
  * <p>
- * Unit Tests for {@link UserService} to test business logic.
+ * Unit Tests for {@link UserController} to test what information is being passed to and being recieved from the
+ * {@link UserService}.
  */
 @ExtendWith(MockitoExtension.class)
 class UserControllerUnitTest {
