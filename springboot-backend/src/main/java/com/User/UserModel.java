@@ -1,5 +1,7 @@
 package com.User;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -18,7 +20,9 @@ public class UserModel {
     }
 
     //parameterized constructor
-    public UserModel(String username, String password, String email, Date creationDate, Date lastAccessDate) {
+    public UserModel(String username, String firstName, String lastName, String password, String email, Date creationDate, Date lastAccessDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -30,16 +34,27 @@ public class UserModel {
     @Column(name = "username")
     private String username;
 
+    @NotNull
+    @Column(name = "first_name")
+    private String firstName;
+
+    @NotNull
+    @Column(name = "last_name")
+    private String lastName;
+
+    @NotNull
     @Column(name = "password")
     private String password;
 
     @Column(name = "email")
     private String email;
 
+    @NotNull
     @Temporal(TemporalType.DATE) //json format date
     @Column(name = "creation_date")
     private Date creationDate;
 
+    @NotNull
     @Temporal(TemporalType.DATE) //json format date
     @Column(name = "last_access_date")
     private Date lastAccessDate;
@@ -54,6 +69,22 @@ public class UserModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {

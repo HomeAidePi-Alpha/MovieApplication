@@ -47,7 +47,9 @@ class UserControllerUnitTest {
     void itShouldCreateAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
@@ -69,7 +71,9 @@ class UserControllerUnitTest {
     void itShouldGetAUserById() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
@@ -93,7 +97,9 @@ class UserControllerUnitTest {
     void itShouldUpdateAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
@@ -102,6 +108,8 @@ class UserControllerUnitTest {
 
         UserModel newUserModel = new UserModel(
                 "newUsername",
+                "newFirstName",
+                "newLastName",
                 "newPassword",
                 "newEmail@gmail.com",
                 new Date(),
@@ -129,7 +137,9 @@ class UserControllerUnitTest {
     void itShouldDeleteAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),

@@ -47,7 +47,9 @@ class UserServiceUnitTest {
     void itShouldCreateAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
@@ -69,7 +71,9 @@ class UserServiceUnitTest {
     void itShouldGetAUserById() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
@@ -112,15 +116,18 @@ class UserServiceUnitTest {
     void itShouldUpdateAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
                 new Date()
         );
-
         UserModel newUserModel = new UserModel(
                 "newUsername",
+                "newFirstName",
+                "newLastName",
                 "newPassword",
                 "newEmail@gmail.com",
                 new Date(),
@@ -169,7 +176,9 @@ class UserServiceUnitTest {
     void itShouldDeleteAUser() {
         //given
         UserModel userModel = new UserModel(
-                "Test",
+                "TestUserName",
+                "TestFirstName",
+                "TestLastName",
                 "TestPassword",
                 "Test@gmail.com",
                 new Date(),
