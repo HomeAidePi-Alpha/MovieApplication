@@ -25,7 +25,7 @@ public class StudioModel {
     @Column(name = "sid")
     private Long sid;
 
-    @Column
+    @Column(name = "name", nullable = false)
     private String name;
 
     ///

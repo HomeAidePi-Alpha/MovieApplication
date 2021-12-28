@@ -1,9 +1,6 @@
 package com.Director;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -29,12 +26,10 @@ public class DirectorModel {
     @Column(name = "did")
     private Long did;
 
-    @NotNull
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotNull
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     ///
