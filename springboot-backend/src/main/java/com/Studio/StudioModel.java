@@ -1,7 +1,6 @@
 package com.Studio;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
