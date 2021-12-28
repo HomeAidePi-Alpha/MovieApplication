@@ -1,6 +1,5 @@
 package com.Movie;
 
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,8 +30,7 @@ public class MovieModel {
     @Column(name = "mid")
     private Long mid;
 
-    @NotNull
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "length")

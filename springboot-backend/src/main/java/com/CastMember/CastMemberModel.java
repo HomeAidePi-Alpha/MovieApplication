@@ -1,30 +1,31 @@
-package com.Director;
+package com.CastMember;
 
 import javax.persistence.*;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
  * <p>
- * A model for a director in the director table
+ * A model for a castMember in the castMember table
  */
 @Entity
-@Table(name = "director")
-public class DirectorModel {
+@Table(name = "cast_member")
+public class CastMemberModel {
 
     //non-parameterized constructor
-    public DirectorModel() {
+    public CastMemberModel() {
     }
 
     //parameterized constructor
-    public DirectorModel(String firstName, String lastName) {
+    public CastMemberModel(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "did")
-    private Long did;
+    @Column(name = "cmid")
+    private Long cmid;
+
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -36,12 +37,12 @@ public class DirectorModel {
     ///GETTERS AND SETTERS
     ///
 
-    public Long getDid() {
-        return did;
+    public Long getCmid() {
+        return cmid;
     }
 
-    public void setDid(Long did) {
-        this.did = did;
+    public void setCmid(Long cmid) {
+        this.cmid = cmid;
     }
 
     public String getFirstName() {

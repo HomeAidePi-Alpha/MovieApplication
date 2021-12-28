@@ -1,7 +1,5 @@
 package com.User;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 
 import java.util.Date;
@@ -34,29 +32,24 @@ public class UserModel {
     @Column(name = "username")
     private String username;
 
-    @NotNull
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotNull
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotNull
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "email")
     private String email;
 
-    @NotNull
     @Temporal(TemporalType.DATE) //json format date
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", nullable = false)
     private Date creationDate;
 
-    @NotNull
     @Temporal(TemporalType.DATE) //json format date
-    @Column(name = "last_access_date")
+    @Column(name = "last_access_date", nullable = false)
     private Date lastAccessDate;
 
     ///
