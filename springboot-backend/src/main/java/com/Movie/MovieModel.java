@@ -4,6 +4,7 @@ package com.Movie;
 import com.CastMember.CastMemberModel;
 import com.Director.DirectorModel;
 import com.Studio.StudioModel;
+import com.User.UserModel;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -57,6 +58,15 @@ public class MovieModel {
             inverseJoinColumns = {@JoinColumn(name = "sid")}
     )
     private Set<StudioModel> studioModels = new HashSet<>();
+
+    //N:M with User
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_movie",
+            joinColumns = {@JoinColumn(name = "mid")},
+            inverseJoinColumns = {@JoinColumn(name = "username")}
+    )
+    private Set<UserModel> userModels = new HashSet<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -142,5 +152,13 @@ public class MovieModel {
 
     public void setStudioModels(Set<StudioModel> studioModels) {
         this.studioModels = studioModels;
+    }
+
+    public Set<UserModel> getUserModels() {
+        return userModels;
+    }
+
+    public void setUserModels(Set<UserModel> userModels) {
+        this.userModels = userModels;
     }
 }

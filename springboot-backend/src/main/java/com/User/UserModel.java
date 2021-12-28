@@ -1,8 +1,12 @@
 package com.User;
 
+import com.Movie.MovieModel;
+
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -27,6 +31,10 @@ public class UserModel {
         this.creationDate = creationDate;
         this.lastAccessDate = lastAccessDate;
     }
+
+    //N:M with Movie
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userModels")
+    private Set<MovieModel> movieModels = new HashSet<>();
 
     @Id //pk
     @Column(name = "username")
@@ -110,5 +118,13 @@ public class UserModel {
 
     public void setLastAccessDate(Date lastAccessDate) {
         this.lastAccessDate = lastAccessDate;
+    }
+
+    public Set<MovieModel> getMovieModels() {
+        return movieModels;
+    }
+
+    public void setMovieModels(Set<MovieModel> movieModels) {
+        this.movieModels = movieModels;
     }
 }
