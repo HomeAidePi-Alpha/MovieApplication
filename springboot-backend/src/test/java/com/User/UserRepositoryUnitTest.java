@@ -1,5 +1,6 @@
 package com.User;
 
+import com.User.UserRepository;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 /**
