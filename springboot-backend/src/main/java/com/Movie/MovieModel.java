@@ -1,8 +1,12 @@
 package com.Movie;
 
 
+import com.Director.DirectorModel;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -24,6 +28,15 @@ public class MovieModel {
         this.genre = genre;
         this.releaseDate = releaseDate;
     }
+
+    //N:M with Director
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "movie_director",
+            joinColumns = {@JoinColumn(name = "mid")},
+            inverseJoinColumns = {@JoinColumn(name = "did")}
+    )
+    private Set<DirectorModel> directorModels = new HashSet<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,5 +98,13 @@ public class MovieModel {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public Set<DirectorModel> getDirectorModels() {
+        return directorModels;
+    }
+
+    public void setDirectorModels(Set<DirectorModel> directorModels) {
+        this.directorModels = directorModels;
     }
 }
