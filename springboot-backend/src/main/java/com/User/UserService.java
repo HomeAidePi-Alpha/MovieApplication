@@ -68,7 +68,6 @@ public class UserService {
         UserModel user = userRepository.findById(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User With the username: " + username + " does not exist!"));
 
-        user.setUsername(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
         user.setEmail(userDetails.getEmail());
 

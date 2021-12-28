@@ -125,13 +125,13 @@ class UserServiceUnitTest {
                 new Date()
         );
         UserModel newUserModel = new UserModel(
-                "newUsername",
-                "newFirstName",
-                "newLastName",
+                "TestUserName", //does not change
+                "newFirstName",            //does not change
+                "newLastName",              //does not change
                 "newPassword",
                 "newEmail@gmail.com",
-                new Date(),
-                new Date()
+                new Date(),                 //does not change
+                new Date()                  //does not change
         );
 
         //when
@@ -139,7 +139,6 @@ class UserServiceUnitTest {
         underTest.updateUser(newUserModel.getUsername(), newUserModel);
 
         //then
-        assertThat(userModel.getUsername()).isEqualTo(newUserModel.getUsername());
         assertThat(userModel.getPassword()).isEqualTo(newUserModel.getPassword());
         assertThat(userModel.getEmail()).isEqualTo(newUserModel.getEmail());
 
