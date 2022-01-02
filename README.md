@@ -11,7 +11,7 @@ This project is made of 3 separate Docker containers that hold:
 - Java Spring Boot backend (localhost:8080)
 <br>
 <br>
-The latest docker image can be found [here](https://hub.docker.com/r/clh7090/movieapp/).
+The latest docker image can be found at https://hub.docker.com/r/clh7090/movieapp/
 ---
 
 ### Prerequisites
