@@ -9,9 +9,6 @@ This project is made of 3 separate Docker containers that hold:
 - PostgreSQL database (localhost:5432)
 - pgAdmin4 database tool (localhost:5050)
 - Java Spring Boot backend (localhost:8080)
-<br>
-<br>
-The latest docker image can be found at https://hub.docker.com/r/clh7090/movieapp/
 ---
 
 ### Prerequisites
@@ -21,6 +18,10 @@ In order to run this application you need to install two tools: **Docker** & **D
 Instructions how to install **Docker** on [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/install/) , [Mac](https://docs.docker.com/docker-for-mac/install/) .
 
 **Dosker Compose** is already included in installation packs for *Windows* and *Mac*, so only Ubuntu users need to follow [these instructions](https://docs.docker.com/compose/install/).
+
+The latest docker image can be found at https://hub.docker.com/r/clh7090/movieapp/
+
+---
 
 ### How to run it?
 
