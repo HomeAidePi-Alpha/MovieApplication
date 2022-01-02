@@ -49,11 +49,11 @@ The pgAdmin4 tool can be found here [localhost:5050](http://localhost:5050)
 Like other parts of the application, the Postgres database, along with pgAdmin4, are containerized and 
 can be found in the *docker-compose.yml* file.
 
-### springboot-backend (REST API)
+### Spring Boot backend (REST API)
 
 This is a Spring Boot based application that connects to a
-database and exposes the REST endpoints. These endpoints can be consumed by the
-frontend. It supports multiple HTTP REST methods like GET, POST, PUT and
+database and exposes REST endpoints. These endpoints are consumed by a
+potential frontend. It supports multiple HTTP REST methods like GET, POST, PUT and
 DELETE.
 
 The backend is housed on [localhost:8080](http://localhost:8080) followed by a REST endpoint. <br>
