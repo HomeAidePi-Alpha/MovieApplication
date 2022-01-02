@@ -11,7 +11,7 @@ This project is made of 3 separate Docker containers that hold:
 - Java Spring Boot backend (localhost:8080)
 <br>
 <br>
-The latest docker image can be found [here](https://hub.docker.com/r/clh7090/movieapp).
+The latest docker image can be found [here](https://hub.docker.com/r/clh7090/movieapp/).
 ---
 
 ### Prerequisites
@@ -55,7 +55,7 @@ database and exposes the REST endpoints. These endpoints can be consumed by the
 frontend. It supports multiple HTTP REST methods like GET, POST, PUT and
 DELETE.
 
-he backend is housed on [localhost:8080](http://localhost:8080) followed by a REST endpoint. <br>
+The backend is housed on [localhost:8080](http://localhost:8080) followed by a REST endpoint. <br>
 
 This app is also in a Docker container and its definitions can be found
 in these files: <br> 
