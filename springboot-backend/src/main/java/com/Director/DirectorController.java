@@ -38,6 +38,18 @@ public class DirectorController {
         return directorService.getAllDirectors(); // returns a list of directors
     }
 
+    
+    /***
+     * Gets all directors in json format for a certain movie
+     * http://localhost:8080/api/{version}/movie/director/?mid=
+     *
+     * @return Json List of all directors in the db
+     */
+    @GetMapping("/movie/director")
+    public List<DirectorModel> getAllMovieDirectors(@RequestParam("mid") Long mid) {
+        return directorService.getAllMovieDirectors(mid); // returns a list of directors
+    }
+
 
     /**
      * Creates a director, given a request body containing the proper details on
@@ -49,6 +61,21 @@ public class DirectorController {
     @PostMapping("/director")
     public DirectorModel createDirector(@RequestBody DirectorModel director) {
         return directorService.createDirector(director);
+    }
+
+
+    /**
+     * Creates a director for a certain Movie,
+     * given a request body containing a director and a Movie id
+     * http://localhost:8080/api/{version}/movie/director/?mid=
+     *
+     * @param director    a director in json format
+     * @param mid A given movie
+     * @return A response body in json format
+     */
+    @PostMapping("/movie/director")
+    public DirectorModel createMovieDirector(@RequestParam("mid") Long mid, @RequestBody DirectorModel director) {
+        return directorService.createMovieDirector(mid, director);
     }
 
 

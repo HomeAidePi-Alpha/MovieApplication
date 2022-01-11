@@ -39,6 +39,18 @@ public class CastMemberController {
     }
 
 
+    /***
+     * Gets all castMembers in json format for a certain movie
+     * http://localhost:8080/api/{version}/movie/castMember/?mid=
+     *
+     * @return Json List of all castMembers in the db
+     */
+    @GetMapping("/movie/castMember")
+    public List<CastMemberModel> getAllMovieCastMembers(@RequestParam("mid") Long mid) {
+        return castMemberService.getAllMovieCastMembers(mid); // returns a list of castMembers
+    }
+
+
     /**
      * Creates a castMember, given a request body containing the proper details on
      * http://localhost:8080/api/{version}/castMember/
@@ -49,6 +61,20 @@ public class CastMemberController {
     @PostMapping("/castMember")
     public CastMemberModel createCastMember(@RequestBody CastMemberModel castMember) {
         return castMemberService.createCastMember(castMember);
+    }
+
+    /**
+     * Creates a castMember for a certain Movie,
+     * given a request body containing a castMember and a Movie id
+     * http://localhost:8080/api/{version}/movie/castMember/?mid=
+     *
+     * @param castMember    a castMember in json format
+     * @param mid A given movie
+     * @return A response body in json format
+     */
+    @PostMapping("/movie/castMember")
+    public CastMemberModel createMovieCastMember(@RequestParam("mid") Long mid, @RequestBody CastMemberModel castMember) {
+        return castMemberService.createMovieCastMember(mid, castMember);
     }
 
 

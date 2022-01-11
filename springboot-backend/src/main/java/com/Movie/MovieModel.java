@@ -7,9 +7,7 @@ import com.Studio.StudioModel;
 import com.User.UserModel;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -39,7 +37,7 @@ public class MovieModel {
             joinColumns = {@JoinColumn(name = "mid")},
             inverseJoinColumns = {@JoinColumn(name = "did")}
     )
-    private Set<DirectorModel> directorModels = new HashSet<>();
+    private List<DirectorModel> directorModels = new ArrayList<>();
 
     //N:M with CastMember
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -48,7 +46,7 @@ public class MovieModel {
             joinColumns = {@JoinColumn(name = "mid")},
             inverseJoinColumns = {@JoinColumn(name = "cmid")}
     )
-    private Set<CastMemberModel> castMemberModels = new HashSet<>();
+    private List<CastMemberModel> castMemberModels = new ArrayList<>();
 
     //N:M with Studio
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -57,16 +55,12 @@ public class MovieModel {
             joinColumns = {@JoinColumn(name = "mid")},
             inverseJoinColumns = {@JoinColumn(name = "sid")}
     )
-    private Set<StudioModel> studioModels = new HashSet<>();
+    private List<StudioModel> studioModels = new ArrayList<>();
 
-    //N:M with User
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_movie",
-            joinColumns = {@JoinColumn(name = "mid")},
-            inverseJoinColumns = {@JoinColumn(name = "username")}
-    )
-    private Set<UserModel> userModels = new HashSet<>();
+    //M:1 with User
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_user")
+    private UserModel user;
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,9 +88,6 @@ public class MovieModel {
         return mid;
     }
 
-    public void setMid(Long mid) {
-        this.mid = mid;
-    }
 
     public String getTitle() {
         return title;
@@ -130,35 +121,23 @@ public class MovieModel {
         this.releaseDate = releaseDate;
     }
 
-    public Set<DirectorModel> getDirectorModels() {
+    public List<DirectorModel> getDirectorModels() {
         return directorModels;
     }
 
-    public void setDirectorModels(Set<DirectorModel> directorModels) {
-        this.directorModels = directorModels;
-    }
-
-    public Set<CastMemberModel> getCastMemberModels() {
+    public List<CastMemberModel> getCastMemberModels() {
         return castMemberModels;
     }
 
-    public void setCastMemberModels(Set<CastMemberModel> castMemberModels) {
-        this.castMemberModels = castMemberModels;
-    }
-
-    public Set<StudioModel> getStudioModels() {
+    public List<StudioModel> getStudioModels() {
         return studioModels;
     }
 
-    public void setStudioModels(Set<StudioModel> studioModels) {
-        this.studioModels = studioModels;
+    public UserModel getUser() {
+        return user;
     }
 
-    public Set<UserModel> getUserModels() {
-        return userModels;
-    }
-
-    public void setUserModels(Set<UserModel> userModels) {
-        this.userModels = userModels;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

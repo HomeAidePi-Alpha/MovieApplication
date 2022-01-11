@@ -1,6 +1,8 @@
 package com.Movie;
 
 import com.Exception.ResourceNotFoundException;
+import com.User.UserModel;
+import com.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,14 @@ public class MovieService {
     @Autowired // Injected Singleton
     private final MovieRepository movieRepository;
 
+    @Autowired // Injected Singleton
+    private UserService userService;
+
     //Constructor
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
+
 
     /**
      * Gets all movies from the database
@@ -34,12 +40,40 @@ public class MovieService {
 
 
     /**
+     * Gets all movies from the database for a certain user
+     *
+     * @return A list of all movies
+     */
+    public List<MovieModel> getAllUserMovies(String username) {
+        UserModel currentUser = userService.getUserById(username);
+        return currentUser.getMovieModels(); // returns a list of movies
+    }
+
+
+    /**
      * Saves a new movie into the repository
      *
      * @param movie A given movie
      * @return a newly saved Movie
      */
     public MovieModel createMovie(MovieModel movie) {
+        return movieRepository.save(movie);
+    }
+
+
+    /**
+     * Creates a movie for a certain user,
+     *
+     * @param movie    a movie in json format
+     * @param username A given username
+     * @return A response body in json format
+     */
+    public MovieModel createUserMovie(String username, MovieModel movie) {
+        //add movie to users movies
+        UserModel currentUser = userService.getUserById(username);
+        movie.setUser(currentUser);
+        currentUser.getMovieModels().add(movie);
+        //Cascade.All saves the details
         return movieRepository.save(movie);
     }
 
@@ -59,7 +93,7 @@ public class MovieService {
     /**
      * Updates a given movie by mid given some new details
      *
-     * @param mid    A long mid
+     * @param mid          A long mid
      * @param movieDetails A movie details
      * @return A movie, or an RNF exception
      */

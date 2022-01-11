@@ -1,10 +1,11 @@
 package com.Director;
 
 import com.Movie.MovieModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -26,8 +27,9 @@ public class DirectorModel {
     }
 
     //N:M with Movie
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "directorModels")
-    private Set<MovieModel> movieModels = new HashSet<>();
+    private final List<MovieModel> movieModels = new ArrayList<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,10 +50,6 @@ public class DirectorModel {
         return did;
     }
 
-    public void setDid(Long did) {
-        this.did = did;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -68,11 +66,8 @@ public class DirectorModel {
         this.lastName = lastName;
     }
 
-    public Set<MovieModel> getMovieModels() {
+    public List<MovieModel> getMovieModels() {
         return movieModels;
     }
 
-    public void setMovieModels(Set<MovieModel> movieModels) {
-        this.movieModels = movieModels;
-    }
 }

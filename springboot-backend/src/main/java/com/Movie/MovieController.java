@@ -1,7 +1,5 @@
 package com.Movie;
 
-import com.Movie.MovieModel;
-import com.Movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +38,17 @@ public class MovieController {
         return movieService.getAllMovies(); // returns a list of movies
     }
 
+    /***
+     * Gets all movies in json format for a certain user
+     * http://localhost:8080/api/{version}/users/movie/?username=
+     *
+     * @return Json List of all movies in the db
+     */
+    @GetMapping("/users/movie")
+    public List<MovieModel> getAllUserMovies(@RequestParam("username") String username) {
+        return movieService.getAllUserMovies(username); // returns a list of movies
+    }
+
 
     /**
      * Creates a movie, given a request body containing the proper details on
@@ -51,6 +60,20 @@ public class MovieController {
     @PostMapping("/movie")
     public MovieModel createMovie(@RequestBody MovieModel movie) {
         return movieService.createMovie(movie);
+    }
+
+    /**
+     * Creates a movie for a certain user,
+     * given a request body containing a movie and a username
+     * http://localhost:8080/api/{version}/users/movie/?username=
+     *
+     * @param movie    a movie in json format
+     * @param username A given username
+     * @return A response body in json format
+     */
+    @PostMapping("/users/movie")
+    public MovieModel createUserMovie(@RequestParam("username") String username, @RequestBody MovieModel movie) {
+        return movieService.createUserMovie(username, movie);
     }
 
 
@@ -97,4 +120,5 @@ public class MovieController {
         response.put("deleted", true); // if the resource didn't exist it will send a 404 not found, rnf exception
         return ResponseEntity.ok(response);
     }
+
 }

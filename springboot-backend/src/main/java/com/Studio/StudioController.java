@@ -11,7 +11,7 @@ import java.util.Map;
 /***
  * @author Connor Hunter        connh321@gmail.com
  *
- * A Studio controller responsible for recieving calls for data from the front-end of the Movie Application and
+ * A Studio controller responsible for recieving calls for data from the front-end of the Studio Application and
  * returning data resources about a studio.
  *
  */
@@ -39,6 +39,18 @@ public class StudioController {
     }
 
 
+    /***
+     * Gets all studios in json format for a certain movie
+     * http://localhost:8080/api/{version}/studio/movie/?mid=
+     *
+     * @return Json List of all studios in the db
+     */
+    @GetMapping("/studio/movie")
+    public List<StudioModel> getAllMovieStudios(@RequestParam("mid") Long mid) {
+        return studioService.getAllMovieStudios(mid); // returns a list of studios
+    }
+
+
     /**
      * Creates a studio, given a request body containing the proper details on
      * http://localhost:8080/api/{version}/studio/
@@ -49,6 +61,21 @@ public class StudioController {
     @PostMapping("/studio")
     public StudioModel createStudio(@RequestBody StudioModel studio) {
         return studioService.createStudio(studio);
+    }
+
+
+    /**
+     * Creates a studio for a certain Movie,
+     * given a request body containing a studio and a Movie id
+     * http://localhost:8080/api/{version}/studio/movie/?mid=
+     *
+     * @param studio    a studio in json format
+     * @param mid A given movie
+     * @return A response body in json format
+     */
+    @PostMapping("/studio/movie")
+    public StudioModel createMovieStudio(@RequestParam("mid") Long mid, @RequestBody StudioModel studio) {
+        return studioService.createMovieStudio(mid, studio);
     }
 
 

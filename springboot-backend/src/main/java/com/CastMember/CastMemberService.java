@@ -1,6 +1,8 @@
 package com.CastMember;
 
 import com.Exception.ResourceNotFoundException;
+import com.Movie.MovieModel;
+import com.Movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class CastMemberService {
     @Autowired // Injected Singleton
     private final CastMemberRepository castMemberRepository;
 
+    @Autowired // Injected Singleton
+    private MovieService movieService;
+
     //Constructor
     public CastMemberService(CastMemberRepository castMemberRepository) {
         this.castMemberRepository = castMemberRepository;
@@ -34,12 +39,40 @@ public class CastMemberService {
 
 
     /**
+     * Gets all castMembers from the database for a certain movie
+     *
+     * @return A list of all castMembers
+     */
+    public List<CastMemberModel> getAllMovieCastMembers(Long mid) {
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        return currentMovie.getCastMemberModels(); // returns a list of castMembers
+    }
+
+
+    /**
      * Saves a new castMember into the repository
      *
      * @param castMember A given castMember
      * @return a newly saved CastMember
      */
     public CastMemberModel createCastMember(CastMemberModel castMember) {
+        return castMemberRepository.save(castMember);
+    }
+
+
+    /**
+     * Creates a castMember for a certain movie,
+     *
+     * @param castMember    a castMember in json format
+     * @param mid A given mid
+     * @return A response body in json format
+     */
+    public CastMemberModel createMovieCastMember(Long mid, CastMemberModel castMember) {
+        //add castMember to movies castMembers
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        castMember.getMovieModels().add(currentMovie);
+        currentMovie.getCastMemberModels().add(castMember);
+        //Cascade.All saves the details
         return castMemberRepository.save(castMember);
     }
 

@@ -1,12 +1,11 @@
 package com.User;
 
 import com.Movie.MovieModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -32,9 +31,10 @@ public class UserModel {
         this.lastAccessDate = lastAccessDate;
     }
 
-    //N:M with Movie
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userModels")
-    private Set<MovieModel> movieModels = new HashSet<>();
+    //1:M with Movie
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<MovieModel> movieModels = new ArrayList<>();
 
     @Id //pk
     @Column(name = "username")
@@ -120,11 +120,11 @@ public class UserModel {
         this.lastAccessDate = lastAccessDate;
     }
 
-    public Set<MovieModel> getMovieModels() {
+    public List<MovieModel> getMovieModels() {
         return movieModels;
     }
 
-    public void setMovieModels(Set<MovieModel> movieModels) {
+    public void setMovieModels(List<MovieModel> movieModels) {
         this.movieModels = movieModels;
     }
 }

@@ -1,6 +1,8 @@
 package com.Director;
 
 import com.Exception.ResourceNotFoundException;
+import com.Movie.MovieModel;
+import com.Movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,12 @@ import java.util.List;
  */
 @Service
 public class DirectorService {
+
     @Autowired // Injected Singleton
     private final DirectorRepository directorRepository;
+
+    @Autowired // Injected Singleton
+    private MovieService movieService;
 
     //Constructor
     public DirectorService(DirectorRepository directorRepository) {
@@ -34,12 +40,39 @@ public class DirectorService {
 
 
     /**
+     * Gets all directors from the database for a certain movie
+     *
+     * @return A list of all directors
+     */
+    public List<DirectorModel> getAllMovieDirectors(Long mid) {
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        return currentMovie.getDirectorModels(); // returns a list of directors
+    }
+
+
+    /**
      * Saves a new director into the repository
      *
      * @param director A given director
      * @return a newly saved Director
      */
     public DirectorModel createDirector(DirectorModel director) {
+        return directorRepository.save(director);
+    }
+
+    /**
+     * Creates a director for a certain movie,
+     *
+     * @param director    a director in json format
+     * @param mid A given mid
+     * @return A response body in json format
+     */
+    public DirectorModel createMovieDirector(Long mid, DirectorModel director) {
+        //add director to movies directors
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        director.getMovieModels().add(currentMovie);
+        currentMovie.getDirectorModels().add(director);
+        //Cascade.All saves the details
         return directorRepository.save(director);
     }
 

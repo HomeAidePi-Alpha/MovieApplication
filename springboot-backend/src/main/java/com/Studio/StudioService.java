@@ -1,6 +1,8 @@
 package com.Studio;
 
 import com.Exception.ResourceNotFoundException;
+import com.Movie.MovieModel;
+import com.Movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class StudioService {
     @Autowired // Injected Singleton
     private final StudioRepository studioRepository;
 
+    @Autowired // Injected Singleton
+    private MovieService movieService;
+
     //Constructor
     public StudioService(StudioRepository studioRepository) {
         this.studioRepository = studioRepository;
@@ -35,12 +40,39 @@ public class StudioService {
 
 
     /**
+     * Gets all studios from the database for a certain movie
+     *
+     * @return A list of all studios
+     */
+    public List<StudioModel> getAllMovieStudios(Long mid) {
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        return currentMovie.getStudioModels(); // returns a list of studios
+    }
+
+
+    /**
      * Saves a new studio into the repository
      *
      * @param studio A given studio
      * @return a newly saved Studio
      */
     public StudioModel createStudio(StudioModel studio) {
+        return studioRepository.save(studio);
+    }
+
+    /**
+     * Creates a studio for a certain movie,
+     *
+     * @param studio    a studio in json format
+     * @param mid A given mid
+     * @return A response body in json format
+     */
+    public StudioModel createMovieStudio(Long mid, StudioModel studio) {
+        //add studio to movies studios
+        MovieModel currentMovie = movieService.getMovieById(mid);
+        studio.getMovieModels().add(currentMovie);
+        currentMovie.getStudioModels().add(studio);
+        //Cascade.All saves the details
         return studioRepository.save(studio);
     }
 

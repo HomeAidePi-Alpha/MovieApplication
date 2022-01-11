@@ -1,10 +1,11 @@
 package com.Studio;
 
 import com.Movie.MovieModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Connor Hunter        connh321@gmail.com
@@ -24,9 +25,10 @@ public class StudioModel {
         this.name = name;
     }
 
-    //N:M with Movie
+    //N:M with Studio
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "studioModels")
-    private Set<MovieModel> movieModels = new HashSet<>();
+    private final List<MovieModel> movieModels = new ArrayList<>();
 
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +46,6 @@ public class StudioModel {
         return sid;
     }
 
-    public void setSid(Long sid) {
-        this.sid = sid;
-    }
-
     public String getName() {
         return name;
     }
@@ -56,11 +54,8 @@ public class StudioModel {
         this.name = name;
     }
 
-    public Set<MovieModel> getMovieModels() {
+    public List<MovieModel> getMovieModels() {
         return movieModels;
     }
 
-    public void setMovieModels(Set<MovieModel> movieModels) {
-        this.movieModels = movieModels;
-    }
 }
